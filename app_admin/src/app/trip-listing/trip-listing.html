@@ -1,0 +1,61 @@
+
+<h2>Available Trips</h2>
+<p>Manage your Travlr Getaways trips here.</p>
+
+<!-- Administrator feedback messages -->
+<div
+  *ngIf="successMessage"
+  class="success-message"
+  role="status">
+  {{ successMessage }}
+</div>
+
+<div
+  *ngIf="errorMessage"
+  class="error-message"
+  role="alert">
+  {{ errorMessage }}
+</div>
+
+<button type="button" (click)="addTrip()" *ngIf="!showForm">
+  Add New Trip
+</button>
+
+<app-trip-form
+  *ngIf="showForm"
+  [selectedTrip]="selectedTrip"
+  (saved)="onTripSaved()"
+  (cancelled)="onCancel()">
+</app-trip-form>
+
+<div *ngIf="!showForm">
+
+  <!-- Search and filter trips -->
+  <div class="trip-search">
+    <label for="tripSearch">Search Trips:</label>
+    <input
+      id="tripSearch"
+      type="search"
+      [(ngModel)]="searchTerm"
+      placeholder="Search by name, code, or resort"
+    />
+  </div>
+
+  <p *ngIf="filteredTrips.length === 0">
+    No trips match your search.
+  </p>
+
+  <div *ngFor="let trip of filteredTrips">
+    <app-trip-card [trip]="trip"></app-trip-card>
+
+    <button type="button" (click)="editTrip(trip)">
+      Edit
+    </button>
+
+    <button type="button" (click)="deleteTrip(trip)">
+      Delete
+    </button>
+
+    <hr>
+  </div>
+</div>
