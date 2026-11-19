@@ -3,5 +3,4 @@ SNHU Computer Science Capstone ePortfolio showcasing software engineering, algor
 
 
 ## Milestone One: Code Review
-
 [Watch Milestone One Code Review](https://youtu.be/HJKNnCbslSI)
